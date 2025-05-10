@@ -25,4 +25,18 @@ if ($method == 'POST' && $_GET['action'] == 'register') {
     mysqli_query($conn, "INSERT INTO users (username, password) VALUES ('$username', '$password')");
     echo json_encode(['success' => true]);
 }
+elseif ($method == 'POST' && $_GET['action'] == 'login') {
+    $username = $input['username'];
+    $password = $input['password'];
+    
+    $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
+    $user = mysqli_fetch_assoc($result);
+    
+    if ($user && password_verify($password, $user['password'])) {
+        echo json_encode(['success' => true, 'user' => ['id' => $user['id'], 'username' => $user['username']]]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
+    }
+    
+}
 ?>
