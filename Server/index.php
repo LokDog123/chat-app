@@ -39,4 +39,39 @@ elseif ($method == 'POST' && $_GET['action'] == 'login') {
     }
     
 }
+elseif ($method == 'GET' && $_GET['action'] == 'messages') {
+    $result = mysqli_query($conn, "
+        SELECT m.*, u.username 
+        FROM messages m 
+        JOIN users u ON m.user_id = u.id 
+        ORDER BY m.created_at ASC 
+        LIMIT 50
+    ");
+    $messages = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $messages[] = $row;
+    }
+    echo json_encode($messages);
+    
+} elseif ($method == 'POST' && $_GET['action'] == 'messages') {
+    if (empty($input['userId']) || empty($input['text']) || empty($input['username'])) {
+        http_response_code(400);
+        die(json_encode(['success' => false, 'message' => 'Недостаточно данных']));
+    }
+    
+    $userId = intval($input['userId']);
+    $username = mysqli_real_escape_string($conn, $input['username']);
+    $text = mysqli_real_escape_string($conn, $input['text']);
+    
+    $sql = "INSERT INTO messages (user_id, username, text) 
+            VALUES ($userId, '$username', '$text')";
+    
+    if (mysqli_query($conn, $sql)) {
+        die(json_encode(['success' => true]));
+    } else {
+        error_log("MySQL error: " . mysqli_error($conn));
+        http_response_code(500);
+        die(json_encode(['success' => false, 'message' => 'Ошибка базы данных']));
+    }
+}
 ?>
