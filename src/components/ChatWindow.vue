@@ -2,7 +2,7 @@
   <div class="chat-container">
     <div class="chat-header">
       <h2>Чат</h2>
-      <button @click="logout">Выйти</button>
+      <button @click="logout" class = "logout">Выйти</button>
     </div>
 
     <div class="chat-messages">
@@ -12,14 +12,14 @@
         :key="msg.id"
         :class="{ 'own-message': msg.user_id === currentUser.id }"
       >
-        <strong>{{ msg.username }}:</strong> {{ msg.text }}
+        <strong v-if="msg.username!==currentUser.username" >{{ msg.username }}</strong> <p>{{ msg.text }}</p>
         <span class="message-date">{{ formatDate(msg.created_at) }}</span>
       </div>
     </div>
 
     <form @submit.prevent="sendMessage" class="chat-input">
-      <input v-model="newMessage" placeholder="Введите сообщение..." />
-      <button type="submit">Отправить</button>
+      <input v-model="newMessage" placeholder="Start typing..." />
+      <button type="submit"><img src="../../../img/send.png" alt="Send" class="send-icon" /></button>
     </form>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
