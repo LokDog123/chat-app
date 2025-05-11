@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #fafbfd;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  #app{
+    width: 100%;
+  }
+  .chat-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #FFFFFF;
+    border: #E5E5EA solid 1px;
+  }
+  h2{
+    color: #1e1e2f;
+    margin-left: 48%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  form {
+    margin: 10% 0 0 35%;
+    width: 30%;
+    
+  }
+  label{
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #1e1e2f;
+    display: block;
+  }
+  
+  input {
+    display: block;
+    color: #1e1e2f; 
+    padding: 10px;
+    width: 100%;
+    border: #E5E5EA solid 2px;
+    font-size: 16px;
+  }
+  p{
+    color: #1e1e2f;
+  }
+  button {
+    width: 30%;
+    margin-top: 10px;
+    margin-left: 35%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #0485f7;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #357ab8;
+  }
+  .error {
+    color: red;
+    margin-top: 10px;
+  }

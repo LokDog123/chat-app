@@ -18,6 +18,7 @@
     </form>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
+  <link rel="stylesheet" href="login.css" />
 </template>
 
 <script setup>
@@ -68,33 +69,5 @@ async function handleLogin() {
 </script>
 
 <style scoped>
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
 
-input {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  font-size: 16px;
-}
-
-button {
-  padding: 10px;
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #357ab8;
-}
-.error {
-  color: red;
-  margin-top: 10px;
-}
 </style>
