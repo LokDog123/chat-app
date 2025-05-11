@@ -1,24 +1,26 @@
 <template>
     <div class="chat-container">
-      <h2>Регистрация</h2>
-      <form @submit.prevent="handleRegister">
-        <div>
-          <label for="username">Имя пользователя</label>
-          <input id="username" v-model="username" required />
-        </div>
-        <div>
-          <label for="password">Пароль</label>
-          <input id="password" type="password" v-model="password" required />
-        </div>
-        <button type="submit">Зарегистрироваться</button>
-        <p>
-          Уже есть аккаунт?
-          <router-link to="/">Войти</router-link>
-        </p>
-      </form>
-      <p v-if="error" class="error">{{ error }}</p>
+    <div class="chat-header">
+      <h2>Чат</h2>
     </div>
-    <link rel="stylesheet" href="register.css" />
+    <form @submit.prevent="handleRegister">
+      <div>
+        <label for="username">Login</label>
+        <input id="username" v-model="username" required />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" type="password" v-model="password" required />
+      </div>
+      <button type="submit">Register</button>
+      <p>
+        Already have an account?
+        <router-link to="/">Login</router-link>
+      </p>
+    </form>
+    <p v-if="error" class="error">{{ error }}</p>
+  </div>
+  <link rel="stylesheet" href="register.css" />
   </template>
   
   <script setup>

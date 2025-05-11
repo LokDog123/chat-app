@@ -1,18 +1,22 @@
 <template>
   <div class="chat-container">
-    <h2>Вход</h2>
+    <div class="chat-header">
+      <h2>Чат</h2>
+    </div>
     <form @submit.prevent="handleLogin">
       <div>
-        <label for="username">Имя пользователя</label>
+        <label for="username">Login</label>
+      </div>
+      <div>
         <input id="username" v-model="username" required />
       </div>
       <div>
-        <label for="password">Пароль</label>
+        <label for="password">Password</label>
         <input id="password" type="password" v-model="password" required />
       </div>
-      <button type="submit">Войти</button>
+      <button type="submit">Login</button>
       <p>
-        Нет аккаунта?
+        No account?
         <router-link to="/register">Зарегистрироваться</router-link>
       </p>
     </form>
