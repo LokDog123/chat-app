@@ -80,3 +80,66 @@
     color: red;
     margin-top: 10px;
   }
+  @media (min-width: 325px) and (max-width: 480px) {
+    .chat-container {
+      max-width: 50%;
+      margin: 0 auto;
+    }
+    .chat-header h2 {
+      font-size: 12px;
+    }
+    label{
+      font-size: 10px;
+      margin-bottom: 1px;
+    }
+    button{
+      font-size: 8px;
+      margin-left: 15%;
+      padding: 3px;
+      width: 80%;
+    }
+    p, input{
+      font-size: 8px;
+      padding: 1px;
+      margin-bottom: 1px;
+    }
+  }
+  @media (min-width: 481px) and (max-width: 799px) {
+    .chat-container {
+      max-width: 75%;
+      margin: 0 auto;
+    }
+    .chat-header h2 {
+      font-size: 20px;
+    }
+    label{
+      font-size: 16px;
+    }
+    button{
+      font-size: 10px;
+      margin-left: 25%;
+      padding: 5px;
+      width: 50%;
+    }
+    p, input{
+      font-size: 13px;
+      padding: 2px;
+    }
+  }
+  @media (min-width: 800px) and (max-width: 1200px) {
+    .chat-container {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+    label{
+      font-size: 18px;
+    }
+    button{
+      font-size: 15px;
+      padding: 8px;
+    }
+    p, input{
+      font-size: 13px;
+      padding: 5px;
+    }
+  }
