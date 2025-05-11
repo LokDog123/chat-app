@@ -74,4 +74,53 @@ elseif ($method == 'GET' && $_GET['action'] == 'messages') {
         die(json_encode(['success' => false, 'message' => 'Ошибка базы данных']));
     }
 }
+elseif ($method == 'POST' && $_GET['action'] == 'edit_message') {
+    if (empty($input['messageId']) || empty($input['userId']) || !isset($input['newText'])) {
+        http_response_code(400);
+        die(json_encode(['success' => false, 'message' => 'Недостаточно данных']));
+    }
+    
+    $messageId = intval($input['messageId']);
+    $userId = intval($input['userId']);
+    $newText = mysqli_real_escape_string($conn, $input['newText']);
+
+    $check = mysqli_query($conn, "SELECT id FROM messages WHERE id = $messageId AND user_id = $userId");
+    if (mysqli_num_rows($check) == 0) {
+        http_response_code(403);
+        die(json_encode(['success' => false, 'message' => 'Нет прав на редактирование']));
+    }
+    
+    $sql = "UPDATE messages SET text = '$newText', updated_at = NOW() WHERE id = $messageId";
+    
+    if (mysqli_query($conn, $sql)) {
+        die(json_encode(['success' => true]));
+    } else {
+        error_log("MySQL error: " . mysqli_error($conn));
+        http_response_code(500);
+        die(json_encode(['success' => false, 'message' => 'Ошибка базы данных']));
+    }
+}
+elseif ($method == 'POST' && $_GET['action'] == 'delete_message') {
+    if (empty($input['messageId']) || empty($input['userId'])) {
+        http_response_code(400);
+        die(json_encode(['success' => false, 'message' => 'Недостаточно данных']));
+    }
+    
+    $messageId = intval($input['messageId']);
+    $userId = intval($input['userId']);
+
+    $check = mysqli_query($conn, "SELECT id FROM messages WHERE id = $messageId AND user_id = $userId");
+    if (mysqli_num_rows($check) == 0) {
+        http_response_code(403);
+        die(json_encode(['success' => false, 'message' => 'Нет прав на удаление']));
+    }
+    
+    if (mysqli_query($conn, "DELETE FROM messages WHERE id = $messageId")) {
+        die(json_encode(['success' => true]));
+    } else {
+        error_log("MySQL error: " . mysqli_error($conn));
+        http_response_code(500);
+        die(json_encode(['success' => false, 'message' => 'Ошибка базы данных']));
+    }
+}
 ?>
