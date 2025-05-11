@@ -1,5 +1,5 @@
 <template>
-    <div class="chat-container">
+  <div class="chat-container">
     <div class="chat-header">
       <h2>Чат</h2>
     </div>
@@ -20,52 +20,51 @@
     </form>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
-  <link rel="stylesheet" href="register.css" />
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue'
-  import { useRouter } from 'vue-router'
-  
-  const username = ref('')
-  const password = ref('')
-  const error = ref('')
-  const router = useRouter()
-  
-  async function handleRegister() {
-    try { 
-      const response = await fetch('http://localhost/sites/2/chat-app/Server/index.php?action=register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username: username.value,
-          password: password.value
-        })
+  <link rel="stylesheet" href="login.css" />
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const username = ref('')
+const password = ref('')
+const error = ref('')
+const router = useRouter()
+
+async function handleRegister() {
+  try { 
+    const response = await fetch('http://localhost/sites/2/chat-app/Server/index.php?action=register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: username.value,
+        password: password.value
       })
-  
-      const text = await response.text();
-      console.log("Raw server response:", text);
-  
-      try {
-        const data = JSON.parse(text); 
-        if (data.success) {
-            router.push('/')
-        } else {
-          error.value = data.message || 'Ошибка регистрации';
-        }
-      } catch (e) {
-        throw new Error(`Invalid JSON: ${text}`);
+    })
+
+    const text = await response.text();
+    console.log("Raw server response:", text);
+
+    try {
+      const data = JSON.parse(text); 
+      if (data.success) {
+          router.push('/')
+      } else {
+        error.value = data.message || 'Ошибка регистрации';
       }
-    } catch (err) {
-      console.error('Login error:', err);
-      error.value = 'Ошибка соединения с сервером'
+    } catch (e) {
+      throw new Error(`Invalid JSON: ${text}`);
     }
+  } catch (err) {
+    console.error('Login error:', err);
+    error.value = 'Ошибка соединения с сервером'
   }
-  </script>
-  
-  <style scoped>
- 
-  </style>
-  
+}
+</script>
+
+<style scoped>
+
+</style>
