@@ -27,7 +27,7 @@
 
     <form @submit.prevent="sendMessage" class="chat-input">
       <input v-model="newMessage" placeholder="Start typing..." />
-      <button type="submit"><img src="img/send.png" alt="Send" class="send-icon" /></button>
+      <button type="submit"><img src="/img/send.png" alt="Send" class="send-icon" /></button>
     </form>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
