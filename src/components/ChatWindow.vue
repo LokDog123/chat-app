@@ -23,6 +23,7 @@
     </form>
     <p v-if="error" class="error">{{ error }}</p>
   </div>
+  <link rel="stylesheet" href="chat.css" />
 </template>
 
 <script setup>
@@ -117,79 +118,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.chat-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-}
 
-.chat-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 15px;
-  background: #1e1e2f;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-
-.message {
-  width: 35%;
-  margin-bottom: 12px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  background: #2a2a3a;
-}
-
-.own-message {
-  margin-left: 50%;
-  width: 35%;
-  background: #4a90e2;
-  align-self: flex-end;
-}
-
-.message-date {
-  display: block;
-  margin-left: 50px;
-  font-size: 0.8em;
-  color: #ddd;
-  margin-top: 4px;
-  width: auto;
-}
-
-.chat-input {
-  display: flex;
-  gap: 10px;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #444;
-}
-
-.chat-input button {
-  padding: 10px 20px;
-  background: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.error {
-  color: #ff6b6b;
-  margin-top: 10px;
-  text-align: center;
-}
 </style>
