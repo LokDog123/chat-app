@@ -6,15 +6,22 @@
     </div>
 
     <div class="chat-messages">
+      <template v-for="(groupedMessages, date) in groupByDate(messages)">
+      <div v-if="groupedMessages.length > 0" class="message-day" key="date">
+        {{ date }}
+      </div>
       <div 
         class="message" 
-        v-for="msg in messages" 
+        v-for="msg in groupedMessages" 
         :key="msg.id"
         :class="{ 'own-message': msg.user_id === currentUser.id }"
+        @contextmenu.prevent="showContextMenu($event, msg)"
       >
-        <strong v-if="msg.username!==currentUser.username" >{{ msg.username }}</strong> <p>{{ msg.text }}</p>
-        <span class="message-date">{{ formatDate(msg.created_at) }}</span>
+        <strong v-if="msg.user_id !== currentUser.id">{{ msg.username }}</strong>
+        <p>{{ msg.text }}</p>
+        <span class="message-date">{{ formatTime(msg.created_at) }}</span>
       </div>
+    </template>
     </div>
 
     <form @submit.prevent="sendMessage" class="chat-input">
@@ -39,7 +46,19 @@ const error = ref('')
 if (!currentUser) {
   router.push('/')
 }
-
+function groupByDate(messages) {
+  const grouped = {};
+  
+  messages.forEach(msg => {
+    const date = formatDate(msg.created_at); 
+    if (!grouped[date]) {
+      grouped[date] = []; 
+    }
+    grouped[date].push(msg); 
+  });
+  
+  return grouped; 
+}
 function formatDate(dateString) {
   const date = new Date(dateString)
   const options = {
@@ -49,7 +68,15 @@ function formatDate(dateString) {
   };
   return date.toLocaleTimeString([], options);
 }
-
+function formatTime(dateString) {
+  const date = new Date(dateString)
+  const options = {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true, 
+  };
+  return date.toLocaleTimeString([], options);
+}
 
 async function loadMessages() {
   try {

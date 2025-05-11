@@ -53,7 +53,7 @@ async function handleLogin() {
 
 
     try {
-      const data = JSON.parse(text); // Пробуем распарсить вручную
+      const data = JSON.parse(text); 
       if (data.success) {
         localStorage.setItem('currentUser', JSON.stringify({
           id: data.user.id,
