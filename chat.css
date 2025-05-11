@@ -198,9 +198,57 @@
   }
   
   
-  @media screen and (max-width: 768px) {
-    .chat-container {
-      border-radius: 20px;
-      height: 100vh;
+  @media (min-width: 325px) and (max-width: 480px) {
+    .message{
+      font-size: 10px;
+      width: 25%;
+    }
+    h2{
+      font-size: 18px;
+    }
+    h3{
+      font-size: 12px;
+    }
+    .logout{
+      font-size: 10px;
+    }
+    .message-day{
+      font-size: 12px;
+    }
+    .edit-modal-content textarea {
+      height: 70px;
+    }
+    .edit-modal-buttons button {
+      padding: 2px 4px;
+      font-size: 10px;
+    }
+    .edit-modal-buttons {
+      gap: 2px;
+    }
+  }
+  @media (min-width: 481px) and (max-width: 799px) {
+    .message{
+      font-size: 12px;
+      width: 30%;
+    }
+    h3{
+      font-size: 14px;
+    }
+    .edit-modal-content textarea {
+      height: 75px;
+    }
+    .edit-modal-buttons button {
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+  
+  }
+  @media (min-width: 800px) and (max-width: 1200px) {
+    .message{
+      font-size: 14px;
+      width: 35%;
+    }
+    h3{
+      font-size: 16px;
     }
   }
